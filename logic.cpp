@@ -344,7 +344,6 @@ vector<char> toNegBin(string s)
 }
 
 
-
 string divide(string A, string B, int accuracy)
 {
 
@@ -405,22 +404,19 @@ void figN(vector<vector<int> > *matrixAB)
     for(int i=0;i<l1-1;i++)
     {
 
-        for(int j=1;j<l2-1;j++)
+        for(int j=1;j<l2;j++)
         {
 
 
-            if((matrixAB->at(i).at(j-1)==0)) //Буква Т
-            {
-                if((j+1)<(matrixAB->at(i).size())) // Якщо не виходимо за межі матриці
-                {
-                    if((matrixAB->at(i).at(j)==0)&&(matrixAB->at(i).at(j+1)==1)&&(matrixAB->at(i+1).at(j)==1))
+                    if((matrixAB->at(i).at(j)==0)&&(matrixAB->at(i).at(j-1)==0)&&(matrixAB->at(i).at(j-2)==1)&&(matrixAB->at(i+1).at(j-1)))
                     {
                         matrixAB->at(i).at(j)=1;
                         matrixAB->at(i).at(j-1)=1;
-                        matrixAB->at(i+1).at(j)=0;
-                        matrixAB->at(i).at(j+1)=0;
+                        matrixAB->at(i).at(j-2)=0;
+                        matrixAB->at(i+1).at(j-1)=0;
+
                         for(int i=0;i<matrixAB->size();i++)
-{
+                        {
                             for(int j=0;j<matrixAB->at(0).size();j++)
                                 cout<<matrixAB->at(i).at(j)<<' ';
                             cout<<endl;
@@ -428,9 +424,9 @@ void figN(vector<vector<int> > *matrixAB)
                         }
                         cout<<endl;
                     }
-                    // Тут фігурні дужки, щоб компілятор розрізняв, до якого ІФу належить цей ЕЛСЕ
-                }
-            }
+
+
+
 
             if((matrixAB->at(i).at(j)==1)) //Об'єднані фігури Г та зсув; Можна запхати Т
             {

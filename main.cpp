@@ -8,8 +8,8 @@ using namespace std;
 int main()
 {
 
-    //multipl("1001","1010");
-     divide("110","1010",4);
+    //multipl("1011","1010");
+     divide("1101","1010",4);
     return 0;
 
 }
