@@ -399,21 +399,53 @@ void figN(vector<vector<int> > *matrixAB)
     //Треба юзати matrix->at(i).at(j) для  matrix[i][j]
     int l1=matrixAB->size();
     int l2=matrixAB->at(0).size();
-
-
+    //Тут є нормальна Т,Г і зсув і нормальний рейндж. Перебігаємо через цілий масив один раз
+    {
     for(int i=0;i<l1-1;i++)
     {
-
         for(int j=1;j<l2;j++)
         {
 
+            if((matrixAB->at(i).at(j)==0)&&(matrixAB->at(i).at(j-1)==0)&&(matrixAB->at(i).at(j-2)==1)&&(matrixAB->at(i+1).at(j-1)))
+            {
+                matrixAB->at(i).at(j)=1;
+                matrixAB->at(i).at(j-1)=1;
+                matrixAB->at(i).at(j-2)=0;
+                matrixAB->at(i+1).at(j-1)=0;
 
-                    if((matrixAB->at(i).at(j)==0)&&(matrixAB->at(i).at(j-1)==0)&&(matrixAB->at(i).at(j-2)==1)&&(matrixAB->at(i+1).at(j-1)))
+                for(int i=0;i<matrixAB->size();i++)
+                {
+                    for(int j=0;j<matrixAB->at(0).size();j++)
+                        cout<<matrixAB->at(i).at(j)<<' ';
+                    cout<<endl;
+
+                }
+                cout<<endl;
+            }
+
+
+            if((matrixAB->at(i).at(j)==1)) //Об'єднані фігури Г та зсув; Можна запхати Т
+            {
+                if((matrixAB->at(i).at(j)==1)&&(matrixAB->at(i).at(j-1)==1)&&(matrixAB->at(i+1).at(j-1)==1)) // Буква Г
+                {
+                    matrixAB->at(i).at(j)=0;
+                    matrixAB->at(i).at(j-1)=0;
+                    matrixAB->at(i+1).at(j-1)=0;
+
+                    for(int i=0;i<matrixAB->size();i++)
                     {
-                        matrixAB->at(i).at(j)=1;
-                        matrixAB->at(i).at(j-1)=1;
-                        matrixAB->at(i).at(j-2)=0;
-                        matrixAB->at(i+1).at(j-1)=0;
+                        for(int j=0;j<matrixAB->at(0).size();j++)
+                            cout<<matrixAB->at(i).at(j)<<' ';
+                        cout<<endl;
+
+                    }
+                    cout<<endl;
+                }
+                else //ЯКЩО ЗАБРАТИ ЦЕЙ ЕЛСЕ, ТО ВолошУн рак, Юрі +1 бал
+                    if(matrixAB->at(i+1).at(j-1)==0) // Зсув вниз
+                    {
+                        matrixAB->at(i).at(j)=0;
+                        matrixAB->at(i+1).at(j-1)=1;
 
                         for(int i=0;i<matrixAB->size();i++)
                         {
@@ -423,52 +455,12 @@ void figN(vector<vector<int> > *matrixAB)
 
                         }
                         cout<<endl;
-                    }
-
-
-
-
-            if((matrixAB->at(i).at(j)==1)) //Об'єднані фігури Г та зсув; Можна запхати Т
-            {
-                    if((matrixAB->at(i).at(j)==1)&&(matrixAB->at(i).at(j-1)==1)&&(matrixAB->at(i+1).at(j-1)==1)) // Буква Г
-                    {
-                        matrixAB->at(i).at(j)=0;
-                        matrixAB->at(i).at(j-1)=0;
-                        matrixAB->at(i+1).at(j-1)=0;
-
-                        for(int i=0;i<matrixAB->size();i++)
-{
-                            for(int j=0;j<matrixAB->at(0).size();j++)
-                                cout<<matrixAB->at(i).at(j)<<' ';
-                            cout<<endl;
-
-                        }
-                        cout<<endl;
-                    }
-                    else //ЯКЩО ЗАБРАТИ ЦЕЙ ЕЛСЕ, ТО ВолошУн рак, Юрі +1 бал
-                    if(matrixAB->at(i+1).at(j-1)==0) // Зсув вниз
-                    {
-                        matrixAB->at(i).at(j)=0;
-                        matrixAB->at(i+1).at(j-1)=1;
-
-                        for(int i=0;i<matrixAB->size();i++)
-{
-                            for(int j=0;j<matrixAB->at(0).size();j++)
-                                cout<<matrixAB->at(i).at(j)<<' ';
-                            cout<<endl;
-
-                        }
-                        cout<<endl;
 
                     }
-
 
             }
         }
     }
-
-
-
-
+   }
 
 }
